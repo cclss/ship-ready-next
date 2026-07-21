@@ -51,6 +51,7 @@ it in a separate section of this file, but do not delete or weaken BASELINE.
 | Ports/host/TLS | `conventions/networking.md` |
 | Auto-detection is ambiguous | `conventions/preview-toml.md` (escape hatch) |
 | Deploying later | `conventions/deployment-docker.md` |
+| Publishing to Hestia (`deploy.toml`, or deploying with no manifest) | `conventions/deploy-toml.md` |
 
 Most of the time, following the contract above is enough — auto-detection brings
 up a local preview on its own. For monorepos, non-standard builds, or special
@@ -59,3 +60,12 @@ whenever your build/run shape changes.
 
 For the reasoning and how-to behind each contract, read
 `conventions/golden-rules.md` first.
+
+## Shipping
+
+When the app is ready to deploy, generate a `deploy.toml` at the repo root — the
+canonical deploy manifest (build/run/routing/DB). See `conventions/deploy-toml.md`
+for the schema and how to derive it from your app (and your `preview.toml`, if any).
+Apps without a `deploy.toml` still deploy via `preview.toml`/auto-detection
+fallback, but new projects should produce one. This is a deploy artifact only —
+it does not change your code or weaken BASELINE.
