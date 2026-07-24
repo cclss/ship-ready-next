@@ -16,7 +16,9 @@ So keep both paths intact:
 ## Image contract
 
 - **Single port, monolithic.** One container exposes one port. If you have a static frontend, serve it from the same backend on that one port. (Single port is the recommended shape, not a forced architecture.)
-- **Respect `PORT`.** Bind to the `PORT` environment variable at runtime; never hardcode a port. The platform injects `PORT` (and `HOST=127.0.0.1`).
+- **Respect `PORT`.** Bind to the `PORT` environment variable at runtime; never
+  hardcode a port. Local preview supplies a loopback `HOST`; Hestia injects
+  `PORT` but not `HOST`, so a deployed container must bind `0.0.0.0:$PORT`.
 - **Plain HTTP.** Listen in plaintext HTTP. TLS is terminated upstream by the proxy/orchestrator. Do **not** force `https://` or self-redirect to HTTPS.
 - **Config via env.** Read all config and secrets from environment variables. Never bake secrets into the image or commit them.
 - **Multi-stage build.** Build in one stage, copy artifacts into a slim runtime stage — smaller, faster, fewer attack surfaces.
@@ -52,6 +54,13 @@ USER node
 # Bind to process.env.PORT inside your start command.
 CMD ["npm", "start"]
 ```
+
+### React Router v8 Framework Mode (stable successor to Remix v1/v2)
+
+React Router v8 has two different image shapes: an SSR/BFF Node process and a
+static `build/client` image. Do not treat both as a generic Vite `dist/` build.
+Use the pinned, non-root reference images and matching `.dockerignore` in
+`stack-react-router-v8.md`.
 
 ### Phoenix / Elixir (build → release)
 ```dockerfile
