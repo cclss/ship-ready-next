@@ -43,7 +43,8 @@ it in a separate section of this file, but do not delete or weaken BASELINE.
 | What you are building | Read |
 |---|---|
 | Static site (HTML/CSS/JS) | `conventions/stack-static.md` |
-| React frontend (SPA) | `conventions/stack-frontend-react.md` |
+| React frontend (Vite / CRA / Next) | `conventions/stack-frontend-react.md` |
+| React Router v8 Framework Mode (stable successor to Remix v1/v2) | `conventions/stack-react-router-v8.md` |
 | Node backend (express/fastify/nest/vanilla) | `conventions/stack-backend-node.md` |
 | Elixir/Phoenix/LiveView | `conventions/stack-phoenix.md` |
 | Using a database or cache | `conventions/datastores.md` |
@@ -63,9 +64,14 @@ For the reasoning and how-to behind each contract, read
 
 ## Shipping
 
-When the app is ready to deploy, generate a `deploy.toml` at the repo root — the
-canonical deploy manifest (build/run/routing/DB). See `conventions/deploy-toml.md`
-for the schema and how to derive it from your app (and your `preview.toml`, if any).
-Apps without a `deploy.toml` still deploy via `preview.toml`/auto-detection
-fallback, but new projects should produce one. This is a deploy artifact only —
-it does not change your code or weaken BASELINE.
+When the app is ready to deploy, choose one complete path:
+
+- **Fallback:** leave `deploy.toml` absent so Hestia can derive the deployment
+  from `preview.toml` or auto-detection.
+- **Explicit:** commit `deploy.toml`, every referenced `Dockerfile`, and
+  `.dockerignore` together. A `deploy.toml` disables Hestia's Dockerfile
+  generation, so never add a partial manifest by itself.
+
+See `conventions/deploy-toml.md` for the schema and how to derive the explicit
+bundle from your app (and your `preview.toml`, if any). These are deploy
+artifacts only — they do not change your code or weaken BASELINE.

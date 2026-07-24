@@ -10,13 +10,19 @@ how you design your code.
 Hestia builds your repo into a gVisor-isolated container per app and exposes it
 behind a shared TLS terminator at `https://<appId>.<platform-domain>`.
 
-## New projects: generate a `deploy.toml`
+## New projects: choose fallback or an explicit bundle
 
-When your app is ready to ship, **produce a `deploy.toml` at the repo root** — it
-is the canonical, auditable path and gives you full control of build/run/routing.
-Generate it from your app's shape (and your `preview.toml`, if any) using the
-schema and the `preview.toml → deploy.toml` mapping below. This is a deploy
-artifact only; it does not touch your code, stack, or the BASELINE contract.
+When your app is ready to ship, choose one complete path:
+
+- Leave `deploy.toml` absent and use the fallback described below.
+- For the canonical, auditable path, commit **`deploy.toml`, every referenced
+  `Dockerfile`, and `.dockerignore` together**.
+
+The presence of `deploy.toml` disables Hestia's Dockerfile generation. A partial
+manifest — including a healthcheck-only file with no Dockerfile — therefore
+fails preflight. Generate the explicit bundle from your app's shape (and your
+`preview.toml`, if any) using the schema and mapping below. These are deploy
+artifacts only; they do not touch your code, stack, or the BASELINE contract.
 
 ## Existing / no-manifest apps still deploy (fallback)
 
@@ -110,7 +116,8 @@ If you already wrote a `preview.toml`, translate it like this:
 
 ## Examples
 
-**Single service, no DB** — usually no file needed at all. If you want it explicit:
+**Single service, no DB** — usually no file is needed at all. If you want it
+explicit, commit this **together with `./Dockerfile` and `.dockerignore`**:
 ```toml
 # almost empty; a single service auto-publishes at the apex
 healthcheck = "/healthz"
