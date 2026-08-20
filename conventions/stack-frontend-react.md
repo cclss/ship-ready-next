@@ -25,7 +25,10 @@ ambiguous:
 | **React Router v8 Framework Mode** (successor to Remix v1/v2) | `@react-router/dev` + `react-router.config.*`; explicit manifest required | `react-router build` | `build/server` + `build/client` (SSR), or `build/client` (SPA/static) |
 
 - **Vite / CRA / Next-export** build to a static directory; the runtime serves that
-  directory directly. You do **not** write a server.
+  directory directly. You do **not** write a server — and if you ship a Dockerfile,
+  its CMD must serve the built output (e.g. `serve -s dist`), **never** `vite preview`
+  (it writes a temp bundle next to `vite.config.*` at boot; the deploy runtime rootfs
+  is read-only, so it crashes before listening).
 - **Next server (standalone or default)** runs as a long-lived process. It must bind to
   the `PORT` environment variable (see `networking.md`). The runtime builds and starts it
   for you; you don't hand-roll the start command for the standard layout.
