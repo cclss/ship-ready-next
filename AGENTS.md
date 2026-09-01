@@ -47,6 +47,7 @@ it in a separate section of this file, but do not delete or weaken BASELINE.
 | React Router v8 Framework Mode (stable successor to Remix v1/v2) | `conventions/stack-react-router-v8.md` |
 | Node backend (express/fastify/nest/vanilla) | `conventions/stack-backend-node.md` |
 | Elixir/Phoenix/LiveView | `conventions/stack-phoenix.md` |
+| Python backend (FastAPI/Django/Flask) | `conventions/stack-python.md` |
 | Using a database or cache | `conventions/datastores.md` |
 | Environment variables and secrets | `conventions/env-and-secrets.md` |
 | Ports/host/TLS | `conventions/networking.md` |
