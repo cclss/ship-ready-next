@@ -4,11 +4,11 @@ A minimal **deploy** contract for shipping your project as a single container im
 
 ## How this relates to local preview (read this first)
 
-Local preview runs your app **from source** — it detects the framework by inspecting source markers (`package.json`, `mix.exs`, a root `index.html`, or a prebuilt output dir). It does **not** build your Dockerfile to preview.
+Local preview runs your app **from source** — it detects the framework by inspecting source markers (`package.json`, `mix.exs`, `requirements.txt` + `Procfile`, a root `index.html`, or a prebuilt output dir). It does **not** build your Dockerfile to preview.
 
 So keep both paths intact:
 
-- **Source markers** drive the local preview path. Keep `package.json` / `mix.exs` / `index.html` in place.
+- **Source markers** drive the local preview path. Keep `package.json` / `mix.exs` / `requirements.txt` + `Procfile` / `index.html` in place.
 - **The Dockerfile** is the deploy path. Add it for shipping; it does not change preview.
 
 ⚠️ **If the repo has only a `Dockerfile` (or `docker-compose.yml`) and no source markers, local preview is blocked** — it gets classified as container-only and cannot be previewed from source. The fix is to keep your real source files in the repo alongside the Dockerfile, not to remove the Dockerfile.
@@ -103,6 +103,24 @@ USER app
 CMD ["bin/my_app", "start"]
 ```
 
+### Python backend (deps → slim runtime)
+```dockerfile
+FROM python:3.12-slim AS build
+WORKDIR /app
+COPY requirements.txt ./
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
+
+FROM python:3.12-slim
+WORKDIR /app
+RUN useradd --create-home app
+COPY --from=build /install /usr/local
+COPY . .
+USER app
+# Same production server as the Procfile web: line — never flask run /
+# manage.py runserver / --reload (dev tooling; read-only rootfs at deploy).
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+```
+
 ## Checklist
 
 - [ ] Multi-stage build (build stage → slim runtime stage).
@@ -112,4 +130,4 @@ CMD ["bin/my_app", "start"]
 - [ ] Single port; static frontend served by the same process.
 - [ ] Runs as non-root, slim base image.
 - [ ] Secrets read from env; nothing secret baked into the image.
-- [ ] **Source markers (`package.json` / `mix.exs` / `index.html`) kept in the repo** so local preview still works.
+- [ ] **Source markers (`package.json` / `mix.exs` / `requirements.txt` + `Procfile` / `index.html`) kept in the repo** so local preview still works.
