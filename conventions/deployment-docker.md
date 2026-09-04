@@ -121,9 +121,33 @@ USER app
 CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]
 ```
 
+## Landmines seen in production (each of these broke a real publish)
+
+- **Pin base images to tags that exist.** `FROM ${VAR}` fails preflight, and a
+  pinned tag that isn't on the registry fails before the build with a clear
+  message — verify the exact tag on Docker Hub before pinning.
+- **Prisma (or any engine-downloading ORM): install `openssl ca-certificates`
+  in the BUILD stage too**, not just runtime. Without it `prisma generate`
+  detects the wrong openssl and bakes mismatched engines; the runtime re-download
+  then dies on the read-only rootfs (surfaces as a migrate-job timeout).
+- **Monorepo: the Dockerfile must copy everything the build references.**
+  `assets`/CSS/esbuild imports of `../../packages/*` mean those packages must be
+  copied into the image (copy the whole `packages/` dir, not files one by one).
+- **Workspace packages consumed by a compiled CJS runtime must ship built JS.**
+  An `exports` map pointing only at `./src/index.ts` crashes the runtime with
+  `Cannot use import statement outside a module` — build `dist/` and split
+  exports (`require` → `./dist/index.js`, `import`/`types` → source).
+- **Elixir releases: never put `:code.priv_dir` in a module attribute.** It
+  freezes the compile-time `_build/...` path, so the release can't find the file
+  at runtime (works in dev, always broken in the release). Evaluate at runtime.
+- **Verify before you commit:** run `docker build` on every Dockerfile at least
+  once, and boot the app in its deploy form (the release / the built image), not
+  just `npm run dev` — several of the failures above are invisible in dev mode.
+
 ## Checklist
 
 - [ ] Multi-stage build (build stage → slim runtime stage).
+- [ ] Every Dockerfile passed at least one real `docker build`; the app booted in its deploy form.
 - [ ] Deploy CMD is a production server, **never** dev tooling (`vite preview` / `next dev` / `npm run dev`); static apps serve the built output.
 - [ ] Binds to `PORT`; no hardcoded port.
 - [ ] Plain HTTP only; no forced HTTPS / self-redirect.

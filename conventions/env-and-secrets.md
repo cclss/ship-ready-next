@@ -26,6 +26,16 @@ Anything your app needs that the platform can't know about — third-party API k
 feature flags, external service URLs, OAuth client IDs/secrets, etc. These are the
 only variables you are responsible for declaring.
 
+## Boot-required variables block the publish — declare them loudly
+
+A variable the app **refuses to boot without** (`SECRET_KEY_BASE`, `CLOAK_KEY`,
+a required API key) is not just "required" — until an operator registers it as
+a product environment variable, every publish dies in migrate/boot with an
+opaque crash. List every such key in `.env.example` with an empty value so it
+classifies as REQUIRED, and say in the README that publishing needs these set
+first. Generatable secrets should include the generation command in the comment
+(e.g. `# openssl rand -base64 48`).
+
 ## Declaring required vs optional variables
 
 The platform reads two signals to learn which app-specific variables your code needs:

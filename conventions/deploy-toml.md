@@ -18,11 +18,19 @@ When your app is ready to ship, choose one complete path:
 - For the canonical, auditable path, commit **`deploy.toml`, every referenced
   `Dockerfile`, and `.dockerignore` together**.
 
-The presence of `deploy.toml` disables Hestia's Dockerfile generation. A partial
-manifest — including a healthcheck-only file with no Dockerfile — therefore
-fails preflight. Generate the explicit bundle from your app's shape (and your
-`preview.toml`, if any) using the schema and mapping below. These are deploy
+For a **single-service** app, a `deploy.toml` without a Dockerfile is fine:
+Hestia autodetects the runtime and generates the Dockerfile (a healthcheck-only
+manifest deploys a Vite/CRA/Next/Node app end-to-end). For a **multi-service**
+manifest (`[[services]]`), every referenced Dockerfile must exist in the repo —
+the publish gate verifies each one and opens a deploy-prep card naming exactly
+which files are missing. When you write Dockerfiles, commit **`deploy.toml`,
+every referenced `Dockerfile`, and `.dockerignore` together**. These are deploy
 artifacts only; they do not touch your code, stack, or the BASELINE contract.
+
+**Ship with the manifest.** A product that is ready to publish should always
+carry at least the minimal `deploy.toml` (`healthcheck = "/"`). The fallback
+below exists for legacy repos; leaving a finished product without a manifest is
+how it ends up unpublishable long after the work is "done".
 
 ## Existing / no-manifest apps still deploy (fallback)
 
@@ -100,6 +108,17 @@ Rules: single service is auto-published at the apex (`/`) — no `[[services]]`
 needed. With 2+ services, exactly one is `public`; expose others via `routes` or
 `subdomain`, or leave them internal (workers). Sibling services talk over
 `<NAME>_INTERNAL_URL`, never `localhost:<port>`.
+
+**Key placement is enforced.** `database` is top-level ONLY — inside a
+`[[services]]` block it is rejected at preflight (it used to be silently
+ignored, which shipped an app with no `DATABASE_URL` and an opaquely dying
+migrate job). Any key not in the tables above fails preflight; don't invent
+keys.
+
+**Route prefixes are not stripped.** `routes = ["/api"]` forwards requests to
+the service *with* the `/api` prefix intact — the service must define its
+endpoints under `/api` (e.g. a Nest global prefix), while its `healthcheck`
+path is probed container-internally without the prefix.
 
 ## `preview.toml` → `deploy.toml` mapping
 
