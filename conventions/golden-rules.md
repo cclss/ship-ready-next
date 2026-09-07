@@ -81,6 +81,23 @@ state**:
 Migrations should be **idempotent** (file-based migration tools) and seeds **safe to
 re-run**. Details per stack live in `datastores.md`.
 
+## Stop only the processes you started
+
+When you bring up a dev server, a preview, or a watcher to verify something, keep its
+PID and stop exactly that process:
+
+```bash
+npm run dev > /tmp/dev.log 2>&1 &
+server_pid=$!
+# ... verify ...
+kill "$server_pid"
+```
+
+**Never** use `pkill -f <pattern>` or `killall`. Pattern kills match every command
+line on the machine, including the platform's own agent processes (their arguments
+carry text like this brief and your assignment). One `pkill -f "vite"` has terminated
+several unrelated runs mid-work.
+
 ## Out of scope
 
 These rules **do not** cover code quality, architecture, design patterns, or testing
