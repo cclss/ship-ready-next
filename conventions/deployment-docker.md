@@ -140,6 +140,13 @@ CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]
 - **Elixir releases: never put `:code.priv_dir` in a module attribute.** It
   freezes the compile-time `_build/...` path, so the release can't find the file
   at runtime (works in dev, always broken in the release). Evaluate at runtime.
+- **Pin the package manager the lockfile was written with.** A lockfile produced
+  by a newer npm can be rejected by the image's older npm (`npm ci` "not in
+  sync", different hoisting rules) even though it installs fine locally. Either
+  `RUN npm i -g npm@<major>` before `npm ci`, or generate the lockfile with the
+  image's npm. Same for pnpm/yarn: pin the version in the Dockerfile.
+- **Copy `.npmrc` (or `.yarnrc`) into the install stage.** `legacy-peer-deps`
+  and registry settings live there; without it `npm ci` dies with ERESOLVE.
 - **Verify before you commit:** run `docker build` on every Dockerfile at least
   once, and boot the app in its deploy form (the release / the built image), not
   just `npm run dev` — several of the failures above are invisible in dev mode.
