@@ -2,8 +2,8 @@
 
 ## Identity
 
-Use this profile for internal or team products where a workspace of members works on
-objects held in lists: issues, docs, tasks, messages. Reference products: Linear
+Use this profile for internal or team products where a team, inside one workspace,
+works on objects organised as lists: issues, docs, tasks, messages. Reference products: Linear
 (issue tracker), Notion (docs/database), Slack (channels), Asana (tasks), Height.
 
 Belongs here: project trackers, wikis, CRMs used by a team, chat, planning tools.
@@ -17,12 +17,12 @@ Does not belong here: a console for a deployed system (use
 - Left sidebar, fixed. 240 px wide on viewports ≥ 1024 px. Collapses to a 64 px icon
   rail between 768–1023 px. Below 768 px it hides behind a hamburger at the top-left
   of the top bar and opens as a full-height drawer.
-- Sidebar top order, top to bottom: workspace switcher (workspace name + chevron),
+- Sidebar, top to bottom: workspace switcher (workspace name + chevron),
   search trigger (also bound to `⌘/Ctrl+K`), primary "New" button.
-- Primary navigation holds at most 7 items, each icon + label, grouped as Inbox or
-  Notifications, then My items, then workspace sections such as Projects, Teams, or
-  Docs. The active item gets a filled `--color-surface` background; its icon colour
-  does not change.
+- Primary navigation holds at most 7 items, each with icon and label, grouped top to
+  bottom into three blocks: an Inbox (or Notifications) entry first, then My items,
+  then workspace sections such as Projects, Teams, or Docs. The active item gets a
+  filled `--color-surface` background.
 - Sidebar bottom: user avatar and name. Clicking it opens the account menu with
   Profile, Preferences, Workspace settings, and Sign out. Settings lives only in this
   menu, never in primary navigation.
@@ -63,14 +63,15 @@ Keep the interface compact and keyboard-first.
 - `design/screens/app-shell-and-navigation.md`: follow the Shell section above as-is.
 - `design/screens/list-and-detail.md`: default to a dense table or board with a
   right-panel peek; open a full detail page only through an explicit open action.
-- `design/screens/create-and-edit-forms.md`: creation uses a 560 px modal, title
-  field first, submit on `⌘/Ctrl+Enter`.
+- `design/screens/create-and-edit-forms.md`: creation with 3 or more fields uses a
+  560 px modal, title field first, submit on `⌘/Ctrl+Enter`; creation with 1–2 fields
+  (a new label, a new team) stays inline or in a small popover, per Common rules.
 - `design/screens/settings-page.md`: opens from the account menu; uses a left
   sub-nav to divide sections.
 - `design/screens/onboarding-flow.md`: workspace name, then invite members, then
   create the first object; skipping the invite step is allowed.
 - `design/screens/empty-loading-error-states.md`: an empty list offers a
-  "New <object>" action plus a keyboard hint.
+  "New" action naming the object type ("New task", "New doc") plus a keyboard hint.
 
 ## Checklist
 
@@ -82,5 +83,7 @@ Keep the interface compact and keyboard-first.
 - [ ] Exactly one primary button per view, placed top-right of the region it acts on
 - [ ] Destructive actions are in an overflow menu and confirm with a danger-coloured button naming the object
 - [ ] Spacing uses the 4/8/12/16/24/32 scale; body text is 14 px
-- [ ] Colours come from role tokens only; no literal colour values in new code
+- [ ] Colours come from role tokens only; no literal colour values in new code (checked in the diff, not the screenshot)
 - [ ] Lists support keyboard navigation and menus show shortcut hints
+- [ ] Workspace switcher stays visible in every sidebar state; nothing hides or collapses it away
+- [ ] Right panel, when used, is 320–400 px wide and closes with Esc
