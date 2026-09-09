@@ -1,32 +1,32 @@
 # Design briefs
 
-Read this only when a card touches what a user sees: page, panel, form, nav,
-or state (empty/loading/error). API-only, migration, infra, and test cards
+Read this only when a card touches what users see: page, panel, form, nav,
+or state (empty/loading/error). API, migration, infra, and test cards
 skip `design/`.
 
 ## Step 1 — the product profile (once per product)
 
 Read `design/PROFILE.md`.
 
-- **Present:** authoritative. Read only the profile it names.
-- **Absent:** pick the profile whose *Identity* matches the product
-  description, README, and board, then create `design/PROFILE.md`:
+- **Present:** authoritative; read only that profile.
+- **Absent:** pick the profile whose *Identity* fits the product
+  description, README, and board; then create `design/PROFILE.md`:
 
   ```
   profile: saas-workspace
   reason: team tool with workspace, members, list objects
-  chosen: 2026-09-09 by <agent/run id>
+  chosen: 2026-09-09 <run id>
   ```
 
-  Say so in the proof; humans may override.
+  Say so in the proof; humans may edit it.
 
-Profiles: `design/profiles/saas-workspace.md` (team tools, trackers) ·
-`design/profiles/admin-dashboard.md` (consoles, dashboards) ·
-`design/profiles/marketplace.md` (listings, catalogs, directories).
+Profiles: `design/profiles/saas-workspace.md` (team tools) ·
+`design/profiles/admin-dashboard.md` (consoles) ·
+`design/profiles/marketplace.md` (listings).
 
 ## Step 2 — the screen brief (per card)
 
-Match one row, two at most.
+Match one row, at most two.
 
 | Card is about… | Read |
 |---|---|
@@ -37,12 +37,12 @@ Match one row, two at most.
 | onboarding, first run, welcome, setup, invite flow, getting started | `design/screens/onboarding-flow.md` |
 | empty state, loading, skeleton, error page, 404, retry, toast | `design/screens/empty-loading-error-states.md` |
 
-Also follow the profile's *Common rules*. Do not read other briefs "for
+Also follow the profile's *Common rules*. Never read other briefs "for
 context": one profile, one or two screens.
 
 ## Proof rule
 
-Every proof includes both blocks, verbatim headings:
+Every UI proof includes, with verbatim headings:
 
 ```
 Design documents read: design/INDEX.md, design/PROFILE.md, design/profiles/<id>.md, design/screens/<name>.md
@@ -52,10 +52,10 @@ Design checklist:
 - [n/a] <item> — <why it does not apply>
 ```
 
-Copy each checklist item from the documents read; missing blocks make the
-proof incomplete.
+Copy every checklist item you read; without both blocks the proof is
+incomplete.
 
 ## Precedence
 
-`PROFILE.md` › profile › screen brief › your judgement. Existing product code
-wins over all; on conflict, stay consistent and record it as a `[✗]`.
+`PROFILE.md` › profile › screen brief › judgement. Existing product code
+wins; on conflict, record a `[✗]` and stay consistent.
