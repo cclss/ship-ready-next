@@ -87,8 +87,8 @@ rank-led (vote count or timestamp dominates).
 - `design/screens/onboarding-flow.md`: role choice (browse vs. supply), then
   location/interests, then a first save or a first listing draft; browsers can
   skip everything.
-- `design/screens/empty-loading-error-states.md`: empty search results show
-  "Clear filters" first; wishlist and orders empty states point back to Explore.
+- `design/screens/empty-loading-error-states.md`: empty search shows "Clear
+  filters" first, then related suggestions; wishlist/orders empties link to Explore.
 
 ## Checklist
 

@@ -8,21 +8,20 @@ toasts, retry.
 
 ## Anatomy
 
-**Empty — first use.** Centred block: an illustration or icon (24–48 px), a
-title naming the object ("No projects yet"), one line saying what it is for,
-one primary action ("New project"), an optional secondary link (docs, import,
-sample data).
+**Empty — first use.** Centred block: an icon (24–48 px), a title naming the
+object ("No projects yet"), one line on what it is for, one primary action
+("New project"), an optional secondary link (docs, import, sample data).
 
 **Empty — filtered/search.** Compact inline message ("No issues match these
 filters") with a "Clear filters" action; never the first-use illustration.
 
-**Empty — permission.** Explains who can add items; no primary action.
+**Empty — permission.** Says who can add items; no primary action.
 
-**Loading.** Skeleton blocks matching the final layout (row height, card
-shape, KPI tile), shown immediately for lists; a spinner only for actions
+**Loading.** Skeletons matching the final layout (row height, card shape,
+KPI tile), shown immediately for lists; a spinner only for actions
 under 300 ms; never a full-page spinner after the shell has rendered.
 
-**Error — field.** Inline under the field; see
+**Error — field.** Inline under the field, per
 `design/screens/create-and-edit-forms.md`.
 
 **Error — region.** Replaces the region with a title, a one-line cause, a
@@ -31,22 +30,21 @@ Retry button, and a request id when available.
 **Error — transient.** A toast (bottom-left or bottom-centre), auto-dismiss
 in 5 s, with Undo or Retry when meaningful.
 
-**404 / 403.** Renders inside the shell: title, one line, a link back to the
-nearest list.
+**404 / 403.** Inside the shell: title, one line, a link back to the nearest
+list.
 
 ## Required states
 
 Every list has both empty variants (first use and filtered). Every async
-region has a skeleton. Every mutation has a failure toast. Navigating to a
-missing or forbidden object renders the 404/403 page inside the shell, never
-a blank browser page.
+region has a skeleton. Every mutation has a failure toast. A missing or
+forbidden object renders the 404/403 page inside the shell.
 
 ## Interactions
 
-Retry re-runs only the failed request, not the whole page. Toasts stack at
-most 3 and are individually dismissible. Skeleton animation runs no faster
-than one cycle per 1.5 s. The empty-state CTA opens the same creation flow as
-the header's New action — same modal or page, same defaults.
+Retry re-runs only the failed request. Toasts stack at most 3 and are
+individually dismissible. Skeleton animation runs no faster than one cycle per
+1.5 s. The empty-state CTA opens the same creation flow as the header's New
+action.
 
 ## Copy rules
 
@@ -80,3 +78,5 @@ link back to Explore instead of offering a creation action.
 - [ ] 404 and 403 render inside the shell with a link back to the nearest list
 - [ ] Empty-state CTA opens the same flow as the header's New action
 - [ ] Copy has no HTTP codes in titles, no blame, and names the next action
+- [ ] Permission-empty states say who can add items and show no primary action
+- [ ] Every mutation has a failure toast; skeleton animation cycles no faster than every 1.5 s
