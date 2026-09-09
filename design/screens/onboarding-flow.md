@@ -17,30 +17,30 @@ At most 4 steps, each asking one thing:
 2. **Context** — role, team size, or intent.
 3. **Invite** — teammate emails or a share link.
 4. **First object** — create the first project, listing, or data
-   connection, pre-filled with an example (a project named "Welcome board").
+   connection, pre-filled with the example the profile names.
 
-After the last step, land in the app on that first object. A dismissible
-getting-started checklist (3–5 items, with progress) sits inside the shell —
-not another modal.
+After the last step, land in the app on that first object (or on the
+checklist, if the user skipped creating one). A dismissible getting-started
+checklist (3–5 items, with progress) sits inside the shell — not a modal.
 
 ## Required states
 
 | State | What shows |
 |---|---|
-| Progress | Persists per user; reloading returns to the same step |
+| Progress | Persists per user; reload returns to the same step |
 | Step validation | Continue stays disabled until the step's required input is valid |
 | Invite | Accepts zero, one, or many emails; partial input still advances |
-| Waiting for data | Connection steps (admin-dashboard) show a live "waiting for data" state that updates without a reload once an event arrives |
-| Checklist complete | Auto-dismisses once every item is done |
+| Waiting for data | Connection steps (admin-dashboard) show a live "waiting for data" state that updates without reload when an event arrives |
+| Checklist complete | Auto-dismisses when every item is done |
 
 ## Interactions
 
 Back is available on every step after the first; Continue is the primary
-button, right-aligned. `Enter` advances the current step. Skipping a step
-never blocks later use — the getting-started checklist offers the skipped
-action again. The first object from step 4 is real, not a placeholder: it
-is visible in lists immediately. Returning users never see the flow again;
-the flag is per user, not per device.
+button, right-aligned. `Enter` advances the step, except in the invite field,
+where it commits the typed email; Continue advances. Skipping a step never
+blocks later use — the checklist offers the skipped action again. The first
+object from step 4 is real: it is visible in lists immediately. Returning users never see the flow again
+(per-user flag, not per device).
 
 ## Copy rules
 
@@ -66,11 +66,11 @@ skip every remaining step.
 
 - [ ] At most 4 steps, each asking one thing, with visible step progress
 - [ ] The flow is full-screen without the app shell and has Back on every step after the first
-- [ ] Progress persists across reload and the flow never shows again once finished
+- [ ] Reloading mid-flow returns to the same step; reloading after finishing goes straight to the app
 - [ ] Every non-essential step has "Skip for now"; skipped items reappear in the getting-started checklist
-- [ ] The last step creates a real first object and lands the user on it
+- [ ] Completing the last step creates a real first object and lands the user there; skipping it lands on the checklist
 - [ ] A dismissible 3–5 item getting-started checklist appears in the shell after the flow
-- [ ] Buttons are Continue / Skip for now / Finish; step titles are questions or imperatives
 - [ ] Profile-specific step set is followed (workspace→invite→object; org→connect→verify; role→interests→first action)
-- [ ] Continue is right-aligned and disabled until the step is valid; Enter advances; the invite step accepts partial input
-- [ ] The never-show-again flag is per user (a second device skips the flow); the getting-started checklist auto-dismisses when complete
+- [ ] Continue is right-aligned and disabled until the step's input is valid
+- [ ] Enter advances the step; the invite step accepts partial input without blocking
+- [ ] The getting-started checklist auto-dismisses once every item is complete
