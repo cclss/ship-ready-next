@@ -1,20 +1,20 @@
 # Design briefs
 
-Read this only when a card touches something a user sees: page, panel, form,
-nav, or state (empty/loading/error). API-only, migration, infra, and test
-cards skip `design/`.
+Read this only when a card touches what a user sees: page, panel, form, nav,
+or state (empty/loading/error). API-only, migration, infra, and test cards
+skip `design/`.
 
-## Step 1 — the product profile
+## Step 1 — the product profile (once per product)
 
 Read `design/PROFILE.md`.
 
 - **Present:** authoritative. Read only the profile it names.
-- **Absent:** pick the profile whose *Identity* matches the product, then
-  create `design/PROFILE.md`:
+- **Absent:** pick the profile whose *Identity* matches the product
+  description, README, and board, then create `design/PROFILE.md`:
 
   ```
   profile: saas-workspace
-  reason: internal tool with a workspace, members, and list objects
+  reason: team tool with workspace, members, list objects
   chosen: 2026-09-09 by <agent/run id>
   ```
 
@@ -24,7 +24,7 @@ Profiles: `design/profiles/saas-workspace.md` (team tools, trackers) ·
 `design/profiles/admin-dashboard.md` (consoles, dashboards) ·
 `design/profiles/marketplace.md` (listings, catalogs, directories).
 
-## Step 2 — the screen brief
+## Step 2 — the screen brief (per card)
 
 Match one row, two at most.
 
@@ -37,8 +37,8 @@ Match one row, two at most.
 | onboarding, first run, welcome, setup, invite flow, getting started | `design/screens/onboarding-flow.md` |
 | empty state, loading, skeleton, error page, 404, retry, toast | `design/screens/empty-loading-error-states.md` |
 
-Also follow the profile's *Common rules*. Budget: one profile, one or two
-screens.
+Also follow the profile's *Common rules*. Do not read other briefs "for
+context": one profile, one or two screens.
 
 ## Proof rule
 
