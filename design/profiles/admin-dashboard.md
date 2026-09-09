@@ -77,7 +77,8 @@ Keep the interface data-dense.
   created, status) for large records, per the Shell rule above.
 - `design/screens/create-and-edit-forms.md`: a full page for anything that
   creates a credential, a charge, or another side effect; a modal only when
-  the form has 3 or fewer fields and does none of those.
+  the form has 3 or fewer fields and does none of those; edit pages carry a
+  Danger zone for delete, separate from Save.
 - `design/screens/settings-page.md`: Settings is a sidebar item; inside it,
   a left sub-nav divides sections, with Danger zone last.
 - `design/screens/onboarding-flow.md`: create the organisation/project, then connect
