@@ -18,9 +18,9 @@ on hover or once selected.
 **Bulk action bar** — replaces the header when items are selected: count,
 actions, clear.
 
-**Detail** — a page, or a right-panel peek / drawer per the profile. Header (title, status,
-primary action, overflow menu), metadata block (owner, dates, ids), body, then
-activity or comments last.
+**Detail** — a page, a right-panel peek (saas-workspace), or a record side panel
+(admin-dashboard); never the navigation drawer. Header (title, status, primary
+action, overflow), metadata (owner, dates, ids), body, activity last.
 
 **Pagination or infinite scroll** with a visible total.
 

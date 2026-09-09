@@ -23,7 +23,7 @@ Does not belong here: a console for a deployed system (use
   bottom into three blocks: an Inbox (or Notifications) entry first, then My items,
   then workspace sections such as Projects, Teams, or Docs. The active item gets a
   filled `--color-surface` background.
-- Sidebar bottom: user avatar and name. Clicking it opens the account menu with
+- Sidebar bottom: user avatar and name. Clicking it opens the avatar menu with
   Profile, Preferences, Workspace settings, and Sign out. Settings lives only in this
   menu, never in primary navigation.
 - Top bar is 48 px tall: breadcrumb or page title on the left, view controls and page

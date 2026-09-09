@@ -9,13 +9,13 @@ skip `design/`.
 Read `design/PROFILE.md`.
 
 - **Present:** authoritative — open only the profile it names.
-- **Absent:** pick the profile whose *Identity* fits the product
-  description, README, and board; then create `design/PROFILE.md`:
+- **Absent:** compare only each profile's *Identity* section against the
+  product description, README, and board; then create `design/PROFILE.md`:
 
   ```
   profile: saas-workspace
   reason: team tool with workspace, members, list objects
-  chosen: 2026-09-09 <run id>
+  chosen: 2026-09-09
   ```
 
   Say so in the proof; humans may edit it.
@@ -34,7 +34,7 @@ Match one row, at most two.
 | list, table, board, index page, detail page, item view, search results | `design/screens/list-and-detail.md` |
 | create, edit, new item, form, modal, wizard step with inputs | `design/screens/create-and-edit-forms.md` |
 | settings, preferences, account, workspace admin, members, billing | `design/screens/settings-page.md` |
-| onboarding, first run, welcome, setup, invite flow, getting started | `design/screens/onboarding-flow.md` |
+| onboarding, first run, welcome, setup, first-run invites, getting started | `design/screens/onboarding-flow.md` |
 | empty state, loading, skeleton, error page, 404, retry, toast | `design/screens/empty-loading-error-states.md` |
 
 Also follow the profile's *Common rules*. Never read other briefs "for
@@ -45,16 +45,16 @@ context": one profile, one or two screens.
 Every UI proof includes these two lines verbatim, as shown:
 
 ```
-Design documents read: design/INDEX.md, design/PROFILE.md, design/profiles/<id>.md, design/screens/<name>.md
+Design documents read: design/INDEX.md, design/PROFILE.md, design/profiles/<id>.md, design/screens/<name>.md[, design/screens/<name2>.md]
 Design checklist:
 - [✓] <item copied from the brief>
 - [✗] <item> — <one-line reason>
 - [n/a] <item> — <why it does not apply>
 ```
 
-Copy every item from the documents you read; missing blocks make it incomplete.
+Copy every item read; missing blocks make it incomplete.
 
 ## Precedence
 
-`PROFILE.md` › profile › screen brief › agent judgement. Existing product code
-wins; on conflict, record a `[✗]`.
+Profile › screen brief › agent judgement. Existing product code wins; on
+conflict, record a `[✗]`.

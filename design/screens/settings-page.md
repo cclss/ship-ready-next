@@ -36,7 +36,9 @@ save only when the card's Save is pressed. Leaving a dirty card (route change
 or close) asks for confirmation. An API key shows once, at creation, with a
 copy control; later views show it masked. Demoting your own role asks for
 confirmation before it applies. Changing the billing plan confirms with the
-new price and effective date.
+new price and effective date. Renaming the workspace confirms before applying.
+In the Members invite field, Enter commits the email; field validation follows
+`design/screens/create-and-edit-forms.md`.
 
 ## Copy rules
 
