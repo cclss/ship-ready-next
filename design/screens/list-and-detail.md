@@ -56,9 +56,10 @@ The detail title is the item's own name, never "Detail".
 right-panel peek; open a full detail page only through an explicit open action;
 inline edits are available directly in the row or the peek panel.
 
-`design/profiles/admin-dashboard.md` — a data table paired with a full detail page
-that carries a metadata sidebar; ids in the table and the sidebar render in
-monospace; the list offers an export action.
+`design/profiles/admin-dashboard.md` — a data table; small records open in a
+right-side drawer, large records on a full detail page with a metadata sidebar;
+ids in the table and the sidebar render in monospace; the list offers an export
+action.
 
 `design/profiles/marketplace.md` — a card grid paired with a full-page detail that
 has a sticky action panel; filters open in a modal ("Filters" button with an active
