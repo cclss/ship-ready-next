@@ -54,8 +54,9 @@ the only place Settings and Sign out appear.
 sections, with Settings as its own item last; the organisation/project switcher and
 the environment toggle (when the product has environments) sit in the top bar.
 
-`design/profiles/marketplace.md` — there is no sidebar; navigation is a top bar,
-with a bottom tab bar replacing it below the profile's mobile breakpoint. Supply-side
+`design/profiles/marketplace.md` — there is no sidebar; navigation is a top bar.
+Below the profile's mobile breakpoint the top bar stays (search collapses to a pill)
+and a bottom tab bar replaces the avatar menu. Supply-side
 areas (create listing, seller dashboard) may switch to a sidebar for that area only;
 record the switch in the proof.
 
