@@ -17,7 +17,7 @@ Read `design/PROFILE.md`.
   chosen: 2026-09-09
   ```
 
-  Say so in the proof; humans may edit it.
+  Note it in the proof; humans may edit it.
 
 Profiles: `design/profiles/saas-workspace.md` ·
 `design/profiles/admin-dashboard.md` ·
@@ -25,7 +25,7 @@ Profiles: `design/profiles/saas-workspace.md` ·
 
 ## Step 2 — the screen brief (per card)
 
-Match one row, at most two.
+One row per screen the card builds (usually one, at most three).
 
 | Card is about… | Read |
 |---|---|
@@ -36,8 +36,7 @@ Match one row, at most two.
 | onboarding, first run, welcome, setup, first-run invites, getting started | `design/screens/onboarding-flow.md` |
 | empty state, loading, skeleton, error page, 404, retry, toast | `design/screens/empty-loading-error-states.md` |
 
-Also follow the profile's *Common rules*. Never read other briefs "for
-context".
+Also follow the profile's *Common rules*; never read other briefs "for context".
 
 ## Proof rule
 
@@ -52,7 +51,7 @@ Design checklist:
 ```
 
 Copy every item read. Put both blocks in the card's **final** report, not only
-where you read the briefs.
+where you read them.
 
 ## Precedence
 
