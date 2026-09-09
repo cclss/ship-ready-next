@@ -42,6 +42,7 @@ it in a separate section of this file, but do not delete or weaken BASELINE.
 
 | What you are building | Read |
 |---|---|
+| Building or changing a screen, page, navigation, form, or UI state | `design/INDEX.md` (then the one profile and one or two screen briefs it routes you to) |
 | Static site (HTML/CSS/JS) | `conventions/stack-static.md` |
 | React frontend (Vite / CRA / Next) | `conventions/stack-frontend-react.md` |
 | React Router v8 Framework Mode (stable successor to Remix v1/v2) | `conventions/stack-react-router-v8.md` |
@@ -59,6 +60,10 @@ Most of the time, following the contract above is enough — auto-detection brin
 up a local preview on its own. For monorepos, non-standard builds, or special
 commands, read `conventions/preview-toml.md`, add a `preview.toml`, and update it
 whenever your build/run shape changes.
+
+UI work has its own on-demand briefs under `design/`. Read `design/INDEX.md` only for
+cards that touch what a user sees; it routes you to one product profile and one or two
+screen briefs, and it defines the checklist your proof must include.
 
 For the reasoning and how-to behind each contract, read
 `conventions/golden-rules.md` first.
