@@ -1,8 +1,7 @@
 # Design briefs
 
 Read this only when a card touches what users see: page, panel, form, nav,
-or state. API-only, migration, infra, and test cards
-skip `design/`.
+or state. API-only, migration, infra, and test cards skip `design/`.
 
 ## Step 1 — the product profile (once per product)
 
@@ -38,7 +37,7 @@ Match one row, at most two.
 | empty state, loading, skeleton, error page, 404, retry, toast | `design/screens/empty-loading-error-states.md` |
 
 Also follow the profile's *Common rules*. Never read other briefs "for
-context": one profile, one or two screens.
+context".
 
 ## Proof rule
 
@@ -52,7 +51,8 @@ Design checklist:
 - [n/a] <item> — <why it does not apply>
 ```
 
-Copy every item read; missing blocks make it incomplete.
+Copy every item read. Put both blocks in the card's **final** report, not only
+where you read the briefs.
 
 ## Precedence
 

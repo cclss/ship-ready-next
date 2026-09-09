@@ -82,7 +82,7 @@ Keep the interface compact and keyboard-first.
 - [ ] Top bar is 48 px with breadcrumb/title left and page actions right; there is no global top navigation
 - [ ] Exactly one primary button per view, placed top-right of the region it acts on
 - [ ] Destructive actions are in an overflow menu and confirm with a danger-coloured button naming the object
-- [ ] Spacing uses the 4/8/12/16/24/32 scale; body text is 14 px
+- [ ] Spacing uses the 4/8/12/16/24/32 scale; body text is 14 px; icons are 16 px (none fills its container)
 - [ ] Colours come from role tokens only; no literal colour values in new code (checked in the diff, not the screenshot)
 - [ ] Lists support keyboard navigation and menus show shortcut hints
 - [ ] Workspace switcher stays visible in every sidebar state; nothing hides or collapses it away
